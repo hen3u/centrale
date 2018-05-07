@@ -5,6 +5,7 @@
 RF24 radio(9, 10); // CE, CSN
 
 const byte address[6] = "00001";
+
 int led_red = 6;
 int led_green = 7;
 int led_orange = 8;
@@ -14,6 +15,9 @@ void setup() {
     
   radio.begin();
   radio.openReadingPipe(0, address);
+  radio.setPALevel(RF24_PA_LOW);
+  radio.setDataRate(RF24_250KBPS);
+  radio.setChannel(108);
   radio.startListening();
   
   pinMode(led_red, OUTPUT);
